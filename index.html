@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carmen's Asian Mini Market · 卡門亞洲小超市 — Llandudno</title>
+<title>Carmen's Asian Mini Market Ltd · 卡門亞洲小超市 — Llandudno</title>
 <meta name="description" content="Family-run South Asian & world grocery in Craig-y-Don, Llandudno. Spices, dal, rice, pickles, chutneys, oils and more — in store and by post.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#fff7ec;--paper-2:#ffeed8;--ink:#2a1512;--ink-soft:#6b4a3f;
-    --red:#e23b2e;--red-deep:#b22a22;--gold:#f6b42c;--gold-deep:#d8920f;
-    --jade:#1e9e6a;--jade-deep:#157a51;--pink:#f25c8a;--cream:#fffdf8;--rule:#e7d3b8;
-    --shadow:14px 14px 0 rgba(42,21,18,.07);
+    --paper:#fdf4e3;--paper-2:#ffe7c9;--ink:#180b07;--ink-soft:#5c3a2e;
+    --red:#df141d;--red-deep:#990d14;--gold:#f7a90c;--gold-deep:#cf8000;
+    --jade:#138a5b;--jade-deep:#0f6a45;--pink:#ee3c72;--cream:#fffdf8;--rule:#e3c9a8;
+    --shadow:16px 16px 0 rgba(24,11,7,.14);
     --disp:"Bricolage Grotesque",system-ui,sans-serif;
     --body:"DM Sans","Noto Sans TC",system-ui,sans-serif;--tc:"Noto Sans TC",sans-serif;
   }
@@ -34,7 +34,7 @@
 
   nav{position:sticky;top:0;z-index:60;background:rgba(255,247,236,.93);backdrop-filter:blur(8px);border-bottom:2px solid var(--ink)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:800;font-size:1.16rem}
+  .brand{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:800;font-size:.95rem;line-height:1.08;max-width:230px}
   .brand .mark{width:34px;height:34px;border-radius:9px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:1.1rem;box-shadow:3px 3px 0 var(--ink)}
   .brand small{display:block;font-family:var(--tc);font-weight:700;font-size:.64rem;color:var(--ink-soft);margin-top:1px}
   .navlinks{display:flex;align-items:center;gap:24px;font-weight:500;font-size:.94rem}
@@ -90,13 +90,14 @@
   .fchip.active{background:var(--ink);color:#fff}
   .fchip .ct{font-size:.72rem;opacity:.7}
 
-  .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
   .prod{background:var(--cream);border:2px solid var(--ink);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:.18s}
   .prod:hover{transform:translateY(-3px);box-shadow:5px 7px 0 rgba(42,21,18,.1)}
-  .pimg{aspect-ratio:5/4;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--ink);overflow:hidden}
+  .pimg{aspect-ratio:16/10;position:relative;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--ink);overflow:hidden}
   .pimg img{width:100%;height:100%;object-fit:cover}
-  .pimg .em{font-size:2.7rem;filter:drop-shadow(0 3px 4px rgba(0,0,0,.12))}
-  .pimg .brandchip{position:absolute;left:8px;bottom:8px;background:rgba(42,21,18,.82);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.04em;padding:3px 8px;border-radius:999px;text-transform:uppercase}
+  .pimg .em{font-size:1.55rem;filter:drop-shadow(0 2px 3px rgba(0,0,0,.12))}
+  .pimg .ph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:0 6px}
+  .pimg .phbrand{font-family:var(--disp);font-weight:800;font-size:.92rem;letter-spacing:.02em;line-height:1.05;color:var(--ink);text-transform:uppercase;opacity:.85}
   .pimg .szchip{position:absolute;right:8px;top:8px;background:rgba(255,255,255,.92);color:var(--ink);font-family:var(--disp);font-size:.66rem;font-weight:700;padding:3px 8px;border-radius:999px}
   .cat-spice{background:linear-gradient(150deg,#fdeef0,#f7cdd2)}
   .cat-sauce{background:linear-gradient(150deg,#eafaf3,#c9ecdd)}
@@ -108,14 +109,15 @@
   .cat-snack{background:linear-gradient(150deg,#fff0ea,#ffd6c2)}
   .cat-drink{background:linear-gradient(150deg,#e8f5f2,#c6e6df)}
   .cat-herb{background:linear-gradient(150deg,#eef9ef,#cfeed4)}
-  .pbody{padding:12px 13px 14px;display:flex;flex-direction:column;gap:4px;flex:1}
-  .pbody h4{font-family:var(--disp);font-size:.92rem;line-height:1.2}
-  .pbody .pcn{font-family:var(--tc);font-size:.78rem;color:var(--ink-soft);line-height:1.3}
-  .pbody .psize{font-size:.76rem;color:var(--ink-soft)}
-  .pbtm{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:10px;gap:8px}
-  .price{font-family:var(--disp);font-weight:800;font-size:1rem;color:var(--red)}
-  .price.ask{font-size:.72rem;color:var(--ink-soft);font-weight:600;font-family:var(--body)}
-  .add-btn{background:var(--ink);color:#fff;border:0;border-radius:999px;padding:7px 14px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:var(--body)}
+  .cat-jp{background:linear-gradient(150deg,#f6ecf3,#e7d0e2)}
+  .pbody{padding:9px 10px 11px;display:flex;flex-direction:column;gap:3px;flex:1}
+  .pbody h4{font-family:var(--disp);font-size:.82rem;line-height:1.18}
+  .pbody .pcn{font-family:var(--tc);font-size:.7rem;color:var(--ink-soft);line-height:1.3}
+  .pbody .psize{font-size:.66rem;color:var(--ink-soft)}
+  .pbtm{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:8px;gap:6px}
+  .price{font-family:var(--disp);font-weight:800;font-size:.9rem;color:var(--red)}
+  .price.ask{font-size:.66rem;color:var(--ink-soft);font-weight:600;font-family:var(--body)}
+  .add-btn{background:var(--ink);color:#fff;border:0;border-radius:999px;padding:6px 12px;font-weight:700;font-size:.74rem;cursor:pointer;font-family:var(--body)}
   .add-btn:hover{background:var(--red)}
   .stepper{display:flex;align-items:center;gap:6px;background:var(--paper-2);border-radius:999px;padding:3px}
   .stepper button{width:26px;height:26px;border-radius:50%;border:0;background:var(--ink);color:#fff;font-size:1rem;font-weight:700;cursor:pointer;display:grid;place-items:center;line-height:1}
@@ -188,8 +190,19 @@
   .modal-foot{padding:14px 20px 20px;border-top:2px solid var(--rule)}
   .tot{display:flex;justify-content:space-between;font-family:var(--disp);font-weight:800;font-size:1.1rem;margin-bottom:10px}
   .modal-note{font-size:.74rem;color:var(--ink-soft);margin-top:10px;line-height:1.5;text-align:center}
+  .paysec{margin-top:12px;border-top:1.5px dashed var(--rule);padding-top:12px}
+  .payttl{font-family:var(--disp);font-weight:800;font-size:.92rem;margin-bottom:8px}
+  .paybtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .paybtn{display:flex;flex-direction:column;align-items:center;gap:1px;padding:10px 6px;border:2px solid var(--ink);border-radius:12px;background:var(--cream);cursor:pointer;font-family:var(--body);transition:.15s}
+  .paybtn b{font-size:.9rem}.paybtn small{font-size:.62rem;color:var(--ink-soft)}
+  .paybtn:hover{transform:translateY(-2px);box-shadow:3px 4px 0 rgba(42,21,18,.12)}
+  .pb-stripe:hover{background:#eef2fb}.pb-paypal:hover{background:#eaf3ff}.pb-bank:hover{background:#fdeef0}
+  .bankbox{margin-top:10px;background:var(--paper-2);border-left:4px solid var(--red);border-radius:0 10px 10px 0;padding:11px 14px;font-size:.8rem;line-height:1.6}
+  .bankbox b{font-family:var(--disp)}
+  .bankbox .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted var(--rule);padding:3px 0}
 
-  @media(max-width:1000px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:1120px){.prod-grid{grid-template-columns:repeat(4,1fr)}}
+  @media(max-width:820px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
   @media(max-width:900px){
     .hero-grid,.brands,.visit-grid{grid-template-columns:1fr;gap:32px}
     .why{grid-template-columns:1fr;gap:14px}.foot-grid{grid-template-columns:1fr;gap:26px}
@@ -197,7 +210,7 @@
     .navlinks.open{transform:translateY(0)}.navlinks a{padding:13px 0;border-bottom:1px solid var(--rule)}
     .nav-cta{text-align:center;margin-top:10px}.burger{display:flex}
   }
-  @media(max-width:640px){.prod-grid{grid-template-columns:repeat(2,1fr)}.door{grid-template-columns:1fr}}
+  @media(max-width:640px){.prod-grid{grid-template-columns:repeat(2,1fr)}.door{grid-template-columns:1fr}.pimg{aspect-ratio:16/9}.pimg .em{font-size:1.3rem}.pimg .phbrand{font-size:.82rem}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
@@ -207,7 +220,7 @@
 
 <nav>
   <div class="wrap nav-in">
-    <a class="brand" href="#top"><span class="mark">🧧</span><span>Carmen's<small class="cn">卡門亞洲小超市</small></span></a>
+    <a class="brand" href="#top"><span class="mark">🧧</span><span>Carmen's Asian Mini Market Ltd<small class="cn">卡門亞洲小超市</small></span></a>
     <div class="navlinks" id="navlinks">
       <a href="#shop">Shop</a>
       <a href="#brands">Brands</a>
@@ -222,20 +235,20 @@
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow">Craig-y-Don · Llandudno · since 2020</span>
+      <span class="eyebrow">Craig-y-Don · Llandudno · since 2006</span>
       <h1>The tastes of <span class="em">home</span>, on the&nbsp;corner.<span class="cn">家鄉的味道,就在街角</span></h1>
       <p class="lead">A family-run South Asian &amp; world grocery in Craig-y-Don — spices, dal, basmati, pickles, chutneys and cooking oils, stocked by people who cook with them. Can't get to us? Order by post.<span class="cn">夫妻經營的南亞與世界食材小超市:香料、豆類、香米、醃菜、醬料、食用油,一站買齊;不方便來店也能郵購。</span></p>
       <div class="hero-cta">
         <a class="btn btn-red" href="#shop">Browse the shelves →</a>
         <a class="btn btn-ghost" href="#visit">Find the shop</a>
       </div>
-      <div class="est">Since <b>2020</b> · North Wales · <b>4–6</b> Victoria Buildings, Mostyn Ave</div>
+      <div class="est">Since <b>2006</b> · North Wales · <b>4–6</b> Victoria Buildings, Mostyn Ave</div>
     </div>
     <div class="shopfront">
       <div class="front-awn" aria-hidden="true"></div>
       <div class="shopfront-body">
         <span class="neon">OPEN</span>
-        <h3>Carmen's Asian Mini Market</h3>
+        <h3>Carmen's Asian Mini Market Ltd</h3>
         <p class="addr">4–6 Victoria Buildings, Mostyn Avenue<br>Craig-y-Don, Llandudno LL30 1YU</p>
         <div class="door">
           <div class="cell"><span>Call</span><b>01492 870630</b></div>
@@ -250,8 +263,8 @@
 
 <div class="marquee" aria-hidden="true">
   <div class="track">
-    <span>Tilda basmati <span class="dot">●</span></span><span>Rajah &amp; MDH spices <span class="dot">●</span></span><span>Dal &amp; pulses <span class="dot">●</span></span><span>Niharti pickles <span class="dot">●</span></span><span>Pastes &amp; chutneys <span class="dot">●</span></span><span>Papad &amp; snacks <span class="dot">●</span></span><span>Mail order welcome <span class="dot">●</span></span>
-    <span>Tilda basmati <span class="dot">●</span></span><span>Rajah &amp; MDH spices <span class="dot">●</span></span><span>Dal &amp; pulses <span class="dot">●</span></span><span>Niharti pickles <span class="dot">●</span></span><span>Pastes &amp; chutneys <span class="dot">●</span></span><span>Papad &amp; snacks <span class="dot">●</span></span><span>Mail order welcome <span class="dot">●</span></span>
+    <span>Tilda basmati <span class="dot">●</span></span><span>Rajah &amp; MDH spices <span class="dot">●</span></span><span>Dal &amp; pulses <span class="dot">●</span></span><span>Niharti pickles <span class="dot">●</span></span><span>Pastes &amp; chutneys <span class="dot">●</span></span><span>Papad &amp; snacks <span class="dot">●</span></span><span>Japanese pantry <span class="dot">●</span></span><span>Mail order welcome <span class="dot">●</span></span>
+    <span>Tilda basmati <span class="dot">●</span></span><span>Rajah &amp; MDH spices <span class="dot">●</span></span><span>Dal &amp; pulses <span class="dot">●</span></span><span>Niharti pickles <span class="dot">●</span></span><span>Pastes &amp; chutneys <span class="dot">●</span></span><span>Papad &amp; snacks <span class="dot">●</span></span><span>Japanese pantry <span class="dot">●</span></span><span>Mail order welcome <span class="dot">●</span></span>
   </div>
 </div>
 
@@ -280,6 +293,7 @@
         <span class="chip">Tilda</span><span class="chip">Rajah</span><span class="chip">MDH</span><span class="chip">Shan</span>
         <span class="chip">Pataks</span><span class="chip">Niharti</span><span class="chip">Top-Op</span><span class="chip">Maggi</span>
         <span class="chip">Cirio</span><span class="chip">Greenfields</span><span class="chip">Old Jamaica</span>
+        <span class="chip">Ajinomoto</span><span class="chip">Otafuku</span><span class="chip">J-Basket</span>
       </div>
     </div>
   </div>
@@ -293,8 +307,8 @@
       <p>No self-checkout, no fuss — just people who know their stock and are happy to help you find it.</p>
     </div>
     <div class="why">
-      <div class="stat"><div class="num">2020</div><div class="lab">Serving North Wales since<span class="cn">2020 年於蘭迪德諾開業</span></div></div>
-      <div class="stat"><div class="num">6</div><div class="lab">Days a week (Mon–Sat)<span class="cn">週一至週六營業</span></div></div>
+      <div class="stat"><div class="num">2006</div><div class="lab">Serving North Wales since<span class="cn">2006 年於蘭迪德諾開業</span></div></div>
+      <div class="stat"><div class="num">7</div><div class="lab">Days a week (open daily)<span class="cn">每日營業</span></div></div>
       <div class="stat"><div class="num" id="lineCount">—</div><div class="lab">Lines listed online<span class="cn">線上可見品項</span></div></div>
     </div>
   </div>
@@ -318,18 +332,17 @@
         <div class="hours">
           <h3>Opening hours</h3>
           <p class="sub cn">營業時間 · 請以店家最新公告為準</p>
-          <!-- NOTE: confirm with the shop and update -->
           <div class="hrow"><span class="d">Monday</span><span class="t">10:30 – 18:30</span></div>
           <div class="hrow"><span class="d">Tuesday</span><span class="t">10:30 – 18:30</span></div>
           <div class="hrow"><span class="d">Wednesday</span><span class="t">10:30 – 18:30</span></div>
           <div class="hrow"><span class="d">Thursday</span><span class="t">10:30 – 18:30</span></div>
           <div class="hrow"><span class="d">Friday</span><span class="t">10:30 – 18:30</span></div>
           <div class="hrow"><span class="d">Saturday</span><span class="t">10:30 – 18:30</span></div>
-          <div class="hrow"><span class="d">Sunday</span><span class="t">Closed</span></div>
+          <div class="hrow"><span class="d">Sunday</span><span class="t">11:00 – 18:00</span></div>
         </div>
       </div>
       <div class="map-frame">
-        <iframe title="Carmen's Asian Mini Market on Google Maps"
+        <iframe title="Carmen's Asian Mini Market Ltd on Google Maps"
           src="https://www.google.com/maps?q=4-6%20Victoria%20Buildings%2C%20Mostyn%20Avenue%2C%20Craig-y-Don%2C%20Llandudno%20LL30%201YU&output=embed"
           loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div>
@@ -341,8 +354,8 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <h4>Carmen's Asian Mini Market<small class="cn">卡門亞洲小超市</small></h4>
-        <p>A family-run South Asian &amp; world grocery serving Llandudno and North Wales since 2020.</p>
+        <h4>Carmen's Asian Mini Market Ltd<small class="cn">卡門亞洲小超市</small></h4>
+        <p>A family-run South Asian &amp; world grocery serving Llandudno and North Wales since 2006.</p>
       </div>
       <div class="fcol"><b>Shop</b><a href="#shop">Browse shelves</a><a href="#shop">Mail order</a><a href="#brands">Brands</a><a href="#visit">Visit us</a></div>
       <div class="fcol"><b>Get in touch</b><a href="tel:01492870630">01492 870630</a><a href="mailto:Carmenli6@aol.com">Carmenli6@aol.com</a><a href="https://carmensasiamarket.co.uk" target="_blank" rel="noopener">carmensasiamarket.co.uk</a></div>
@@ -360,14 +373,28 @@
     <div class="modal-head"><h3>Your mail order</h3><button class="x" id="closeModal" aria-label="Close">×</button></div>
     <div class="modal-body" id="orderList"></div>
     <div class="modal-foot">
-      <div class="tot"><span>Priced items subtotal</span><span id="orderTotal">£0.00</span></div>
-      <button class="btn btn-red" id="sendOrder" style="width:100%;justify-content:center">Send order by email →</button>
-      <p class="modal-note">Opens your email app with the order ready to send. Items without a marked price, stock and UK postage are confirmed by Carmen's before any payment.</p>
+      <div class="tot"><span>Priced items subtotal 已標價小計</span><span id="orderTotal">£0.00</span></div>
+      <button class="btn btn-red" id="sendOrder" style="width:100%;justify-content:center">① Send order by email 先 email 下單 →</button>
+      <div class="paysec">
+        <div class="payttl">② Pay 付款 · 二選一</div>
+        <div class="paybtns">
+          <button class="paybtn pb-paypal" id="payPaypal"><b>PayPal</b><small>carmenli6@aol.com</small></button>
+          <button class="paybtn pb-bank" id="payBank"><b>Bank transfer</b><small>Santander</small></button>
+        </div>
+        <div class="bankbox" id="bankBox" hidden></div>
+      </div>
+      <p class="modal-note">建議先 email 下單,店家確認庫存・未標價品項・郵資與總額後再付款;或直接支付已標價小計。Stock, unpriced items &amp; UK postage confirmed by Carmen's before payment.</p>
     </div>
   </div>
 </div>
 
 <script>
+  /* ===== 收款設定 · 請換成店家自己的資料 ===== */
+  const PAY = {
+    paypalEmail : 'carmenli6@aol.com',                          // PayPal 收款 email
+    bank : { name:'Mrs Y M Boddis', sort:'09-01-29', acc:'77594857' }  // Santander
+  };
+
   /* ===== CATEGORIES ===== */
   const CATS = {
     spice:{label:'Spices & Masala', cn:'香料・瑪薩拉'},
@@ -380,6 +407,7 @@
     snack:{label:'Snacks & Papad', cn:'零食・脆餅'},
     drink:{label:'Tea & Drinks', cn:'茶飲'},
     herb:{label:'Herbs & Coconut', cn:'香草・椰製品'},
+    jp:{label:'Japanese 日式', cn:'日式食品'},
   };
 
   /* ===== REAL PRODUCTS (from Carmen's stock list) — edit here ===== */
@@ -490,6 +518,58 @@
     // Herbs & Coconut
     {code:'U708P', brand:'Greenfields', name:'Chives', cn:'乾細香蔥', size:'40g', cat:'herb', ic:'🌿', price:null},
     {code:'U708CT', brand:'Greenfields', name:'Kaffir Lime Leaves', cn:'泰國檸檬葉(青檸葉)', size:'15g', cat:'herb', ic:'🍃', price:null},
+    // Japanese 日式 (JFC)
+    {code:'JFWAK30', brand:'J-Basket', name:'Fueru Wakame (Dried Seaweed)', cn:'乾燥裙帶菜(海帶芽)', size:'30g', cat:'jp', ic:'🌿', price:null},
+    {code:'JFMISO', brand:'Hanamaruki', name:'Vegan Instant Miso Soup (Wakame, 3P)', cn:'純素即食味噌湯(裙帶菜・3包)', size:'54.9g', cat:'jp', ic:'🍲', price:null},
+    {code:'JFYAKI', brand:'J-Basket', name:'LL Yakisoba Noodle with Sauce (3pc)', cn:'日式炒麵附醬(3份)', size:'540g', cat:'jp', ic:'🍜', price:null},
+    {code:'JFOTAYS', brand:'Otafuku', name:'Yakisoba Sauce Kokusai', cn:'多福日式炒麵醬', size:'422ml', cat:'jp', ic:'🫙', price:null},
+    {code:'JFAJIMSG', brand:'Ajinomoto', name:'Umami Seasoning MSG (EU)', cn:'味之素鮮味調味料(味精)', size:'200g', cat:'jp', ic:'🧂', price:null},
+    // ===== East & SE Asian range (delivery 23-Jun-2026, retail prices handwritten) =====
+    {code:'CHI450', brand:'Taiwan', name:'Shao Shing Rice Wine', cn:'台灣紹興酒', size:'600ml', cat:'sauce', ic:'🍶', price:9.50, cuisine:'chinese'},
+    {code:'L283702', brand:'Fu Xing', name:'Water Chestnuts Whole', cn:'福星馬蹄(荸薺)', size:'567g', cat:'tin', ic:'⚪', price:2.99, cuisine:'chinese'},
+    {code:'LKK124', brand:'Lee Kum Kee', name:'Panda Oyster Sauce', cn:'李錦記熊貓蠔油', size:'510g', cat:'sauce', ic:'🦪', price:3.59, cuisine:'chinese'},
+    {code:'LKK126', brand:'Lee Kum Kee', name:'Panda Oyster Sauce (Large)', cn:'李錦記熊貓蠔油(大)', size:'907g', cat:'sauce', ic:'🦪', price:5.65, cuisine:'chinese'},
+    {code:'LKK182', brand:'Lee Kum Kee', name:'Pure Sesame Oil', cn:'李錦記純芝麻油', size:'207ml', cat:'oil', ic:'🟤', price:3.69, cuisine:'chinese'},
+    {code:'LKK200', brand:'Lee Kum Kee', name:'Sweet Soy Sauce', cn:'李錦記甜醬油', size:'207ml', cat:'sauce', ic:'🟫', price:2.50, cuisine:'chinese'},
+    {code:'LKK236', brand:'Lee Kum Kee', name:'Premium Light Soy', cn:'李錦記特級生抽', size:'500ml', cat:'sauce', ic:'🟤', price:2.50, cuisine:'chinese'},
+    {code:'LKK237', brand:'Lee Kum Kee', name:'Premium Dark Soy', cn:'李錦記特級老抽', size:'500ml', cat:'sauce', ic:'🟫', price:2.99, cuisine:'chinese'},
+    {code:'LKK725', brand:'Lee Kum Kee', name:'Supreme Mushroom Dark Soy', cn:'李錦記草菇老抽', size:'500ml', cat:'sauce', ic:'🍄', price:2.99, cuisine:'chinese'},
+    {code:'LKK152', brand:'Lee Kum Kee', name:'Chiu Chow Chilli Oil', cn:'李錦記潮州辣椒油', size:'335g', cat:'oil', ic:'🌶️', price:5.99, cuisine:'chinese'},
+    {code:'LKK131', brand:'Lee Kum Kee', name:'Mushroom Vegetarian Stir-Fry Sauce', cn:'李錦記草菇素食炒醬', size:'510g', cat:'sauce', ic:'🍄', price:3.69, cuisine:'chinese'},
+    {code:'LKK137', brand:'Lee Kum Kee', name:'Black Bean Garlic Sauce', cn:'李錦記蒜蓉豆豉醬', size:'368g', cat:'sauce', ic:'🫘', price:3.29, cuisine:'chinese'},
+    {code:'LKK143', brand:'Lee Kum Kee', name:'Char Siu Sauce', cn:'李錦記叉燒醬', size:'397g', cat:'sauce', ic:'🍖', price:3.29, cuisine:'chinese'},
+    {code:'LKK166', brand:'Lee Kum Kee', name:'Hoi Sin Sauce', cn:'李錦記海鮮醬', size:'397g', cat:'sauce', ic:'🫙', price:3.29, cuisine:'chinese'},
+    {code:'LKK170', brand:'Lee Kum Kee', name:'Plum Sauce', cn:'李錦記酸梅醬', size:'397g', cat:'sauce', ic:'🟣', price:3.50, cuisine:'chinese'},
+    {code:'LKK188', brand:'Lee Kum Kee', name:'Sauce for Dumplings', cn:'李錦記餃子醬', size:'207ml', cat:'sauce', ic:'🥟', price:2.50, cuisine:'chinese'},
+    {code:'LKK253', brand:'Lee Kum Kee', name:'Yellow Bean Sauce', cn:'李錦記磨豉醬(黃豆醬)', size:'240g', cat:'sauce', ic:'🟡', price:2.50, cuisine:'chinese'},
+    {code:'LKK722', brand:'Lee Kum Kee', name:'Peanut Flavoured Sauce', cn:'李錦記花生醬(沙嗲)', size:'226g', cat:'sauce', ic:'🥜', price:2.50, cuisine:'chinese'},
+    {code:'LKK228', brand:'Lee Kum Kee', name:'Minced Garlic', cn:'李錦記蒜蓉', size:'326g', cat:'sauce', ic:'🧄', price:3.69, cuisine:'chinese'},
+    {code:'LKK229', brand:'Lee Kum Kee', name:'Minced Ginger', cn:'李錦記薑蓉', size:'326g', cat:'sauce', ic:'🫚', price:3.69, cuisine:'chinese'},
+    {code:'LKK660', brand:'Lee Kum Kee', name:'Rice Wine Vinegar', cn:'李錦記米醋', size:'500ml', cat:'sauce', ic:'🍶', price:3.99, cuisine:'chinese'},
+    {code:'LGM106', brand:'Lao Gan Ma', name:'Crispy Chilli Oil', cn:'老乾媽香辣脆油辣椒', size:'210g', cat:'oil', ic:'🌶️', price:3.99, cuisine:'chinese'},
+    {code:'NIS101', brand:'Nissin', name:'Demae Ramen Chicken', cn:'日清出前一丁雞肉拉麵', size:'100g', cat:'snack', ic:'🍜', price:0.95, cuisine:'japanese'},
+    {code:'WAN208B', brand:'Want Want', name:'Seaweed Rice Crackers', cn:'旺旺海苔米餅', size:'160g', cat:'snack', ic:'🍘', price:4.50, cuisine:'chinese'},
+    {code:'L300130', brand:'Shi Zu Ren', name:'Sweet Potato Noodle Sour & Hot', cn:'食族人酸辣紅薯粉', size:'130g', cat:'snack', ic:'🍜', price:1.99, cuisine:'chinese'},
+    {code:'LKK673', brand:'Lee Kum Kee', name:'Tom Yum Soup Base', cn:'李錦記冬蔭功湯底', size:'80g', cat:'sauce', ic:'🍲', price:1.50, cuisine:'thai'},
+    {code:'CHI309S', brand:'Chaokoh', name:'Coconut Milk', cn:'Chaokoh 椰漿', size:'400ml', cat:'tin', ic:'🥥', price:2.29, cuisine:'thai'},
+    {code:'CHI047', brand:'Aroy-D', name:'UHT Coconut Cream', cn:'Aroy-D 濃椰漿', size:'500ml', cat:'tin', ic:'🥥', price:2.95, cuisine:'thai'},
+    {code:'CHI331', brand:'Squid', name:'Fish Sauce', cn:'魷魚牌魚露', size:'725ml', cat:'sauce', ic:'🐟', price:3.69, cuisine:'thai'},
+    {code:'CHI334', brand:'Squid', name:'Fish Sauce', cn:'魷魚牌魚露', size:'300ml', cat:'sauce', ic:'🐟', price:2.89, cuisine:'thai'},
+    {code:'CHI338', brand:'Royal Squid', name:'Fish Sauce', cn:'魷魚牌皇牌魚露', size:'725ml', cat:'sauce', ic:'🐟', price:4.99, cuisine:'thai'},
+    {code:'CHI332AR', brand:'Flying Goose', name:'Sriracha Super Hot', cn:'飛鵝是拉差辣醬(超辣)', size:'455ml', cat:'sauce', ic:'🌶️', price:4.95, cuisine:'thai'},
+    {code:'CHI326A', brand:'Flying Goose', name:'Sriracha Extra Garlic', cn:'飛鵝是拉差辣醬(蒜香)', size:'450ml', cat:'sauce', ic:'🌶️', price:4.95, cuisine:'thai'},
+    {code:'FGO102A', brand:'Flying Goose', name:'Sriracha Black Out', cn:'飛鵝是拉差辣醬(極黑辣)', size:'455ml', cat:'sauce', ic:'🌶️', price:4.95, cuisine:'thai'},
+    {code:'CHI248', brand:'Golden Swan', name:'Bamboo Shoot Sliced', cn:'金天鵝筍片', size:'227g', cat:'tin', ic:'🎍', price:1.25, cuisine:'thai'},
+    {code:'TAK101', brand:'Taokaenoi', name:'Crispy Seaweed Original', cn:'小老闆香脆海苔(原味)', size:'32g', cat:'snack', ic:'🟢', price:2.99, cuisine:'thai'},
+    {code:'TAK107T', brand:'Taokaenoi', name:'Tempura Seaweed Original', cn:'小老闆天婦羅海苔(原味)', size:'40g', cat:'snack', ic:'🟢', price:2.99, cuisine:'thai'},
+    {code:'TAK121', brand:'Taokaenoi', name:'Grilled Seaweed Big Roll', cn:'小老闆烤海苔大卷', size:'3g', cat:'snack', ic:'🟢', price:0.65, cuisine:'thai'},
+    {code:'KOH110', brand:'Koh Kae', name:'Peanuts Coconut Flavour', cn:'大哥花生(椰漿味)', size:'230g', cat:'snack', ic:'🥜', price:3.99, cuisine:'thai'},
+    {code:'KOH115', brand:'Koh Kae', name:'Peanuts Nori Wasabi', cn:'大哥花生(海苔芥末)', size:'230g', cat:'snack', ic:'🥜', price:3.99, cuisine:'thai'},
+    {code:'CHI299', brand:'Manora', name:'Prawn Crackers', cn:'Manora 蝦片', size:'500g', cat:'snack', ic:'🍤', price:4.99, cuisine:'thai'},
+    {code:'CHI910', brand:'OKF', name:'Aloe Vera Original', cn:'OKF 蘆薈飲(原味)', size:'1.5L', cat:'drink', ic:'🥤', price:4.75, cuisine:'korean'},
+    {code:'SAN142', brand:'Kimura', name:'Ramune Yuzu Citrus', cn:'木村彈珠汽水(柚子)', size:'200ml', cat:'drink', ic:'🥤', price:2.49, cuisine:'japanese'},
+    {code:'L505205', brand:'Love & Love', name:'Mochi Assorted Tropical Fruit', cn:'Love&Love 綜合熱帶水果麻糬', size:'120g', cat:'snack', ic:'🍡', price:3.50, cuisine:'japanese'},
+    {code:'MAN392', brand:'Kissan', name:'Mango Slices', cn:'Kissan 芒果片', size:'450g', cat:'tin', ic:'🥭', price:2.99, cuisine:'indian'},
   ];
   /* ============================================================ */
 
@@ -506,7 +586,7 @@
   Object.keys(CATS).forEach(k=>{const n=PRODUCTS.filter(p=>p.cat===k).length;if(n)chips+=chipHTML(k,CATS[k].label,CATS[k].cn,n);});
   filters.innerHTML=chips;
 
-  function imgHTML(p){return p.img?'<img src="'+p.img+'" alt="'+p.brand+' '+p.name+'" loading="lazy">':'<span class="em">'+p.ic+'</span>';}
+  function imgHTML(p){return p.img?'<img src="'+p.img+'" alt="'+p.brand+' '+p.name+'" loading="lazy">':'<span class="ph"><span class="em">'+p.ic+'</span><span class="phbrand">'+p.brand+'</span></span>';}
   function priceHTML(p){return p.price!=null?'<span class="price">£'+p.price.toFixed(2)+'</span>':'<span class="price ask">Price on order</span>';}
   function stepperHTML(code){return '<div class="stepper" data-id="'+code+'"><button class="minus">−</button><span class="q">'+cart[code]+'</span><button class="plus">+</button></div>';}
 
@@ -517,7 +597,7 @@
     grid.innerHTML=list.map(p=>(
       '<div class="prod" data-cat="'+p.cat+'">'+
         '<div class="pimg cat-'+p.cat+'">'+imgHTML(p)+
-          '<span class="brandchip">'+p.brand+'</span><span class="szchip">'+p.size+'</span>'+
+          '<span class="szchip">'+p.size+'</span>'+
         '</div>'+
         '<div class="pbody">'+
           '<h4>'+p.name+'</h4>'+
@@ -580,6 +660,34 @@
       '\n\nPriced items subtotal: £'+total.toFixed(2)+' (excl. postage; unpriced items to be quoted).\n\n'+
       'Please confirm stock, any unmarked prices and UK postage.\n\nMy details:\nName:\nDelivery address:\nPhone:\n\nThank you!';
     window.location.href='mailto:Carmenli6@aol.com?subject='+encodeURIComponent('Mail order from carmensasiamarket.co.uk')+'&body='+encodeURIComponent(body);
+  });
+
+  function pricedSubtotal(){let t=0;PRODUCTS.forEach(p=>{if(p.price!=null&&cart[p.code]>0)t+=cart[p.code]*p.price;});return t;}
+  function hasItems(){return PRODUCTS.some(p=>cart[p.code]>0);}
+  const notSet=v=>!v||/X{3,}/.test(v);
+
+  document.getElementById('payPaypal').addEventListener('click',function(){
+    if(!hasItems()){alert('請先在購物籃加入商品。');return;}
+    if(notSet(PAY.paypalEmail)){alert('店家尚未設定 PayPal 收款 email。');return;}
+    const amt=pricedSubtotal();
+    if(amt<=0){alert('購物籃內目前沒有已標價商品。\n請先用「① email 下單」由店家報價,再以報價金額付款。');return;}
+    const u='https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business='+encodeURIComponent(PAY.paypalEmail)+'&item_name='+encodeURIComponent("Carmen's Asian Mini Market Ltd order")+'&amount='+amt.toFixed(2)+'&currency_code=GBP';
+    window.open(u,'_blank','noopener');});
+  document.getElementById('payBank').addEventListener('click',function(){
+    const box=document.getElementById('bankBox');
+    if(!box.hidden){box.hidden=true;return;}
+    if(notSet(PAY.bank.sort)||notSet(PAY.bank.acc)){
+      box.innerHTML='店家尚未設定銀行轉帳資料。';
+    }else{
+      const amt=pricedSubtotal();
+      box.innerHTML='<b>銀行轉帳 Bank transfer (Santander)</b>'+
+        '<div class="row"><span>收款人 Payee</span><span>'+PAY.bank.name+'</span></div>'+
+        '<div class="row"><span>Sort code</span><span>'+PAY.bank.sort+'</span></div>'+
+        '<div class="row"><span>Account no.</span><span>'+PAY.bank.acc+'</span></div>'+
+        '<div class="row"><span>金額 Amount</span><span>'+(amt>0?'£'+amt.toFixed(2)+'(已標價小計)':'店家確認後告知')+'</span></div>'+
+        '<div class="row"><span>附言 Reference</span><span>你的姓名 Your name</span></div>';
+    }
+    box.hidden=false;
   });
 
   const burger=document.getElementById('burger'),links=document.getElementById('navlinks');
