@@ -85,6 +85,10 @@
   .sec-head p{color:var(--ink-soft);font-size:1.01rem}
 
   .filters{position:sticky;top:64px;z-index:40;background:var(--paper);padding:14px 0;margin-bottom:8px;border-bottom:1.5px solid var(--rule);display:flex;gap:9px;flex-wrap:wrap}
+  @media(max-width:900px){
+    .filters{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:12px 24px;margin:0 -24px;width:calc(100% + 48px)}
+    .filters::-webkit-scrollbar{display:none}
+  }
   .fchip{background:var(--cream);border:1.8px solid var(--ink);border-radius:999px;padding:7px 15px;font-weight:600;font-size:.85rem;cursor:pointer;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:.15s}
   .fchip:hover{background:var(--paper-2)}
   .fchip.active{background:var(--ink);color:#fff}
@@ -236,6 +240,10 @@
   </div>
 </nav>
 
+<div class="cat-nav" id="catNav">
+  <div class="wrap"><div class="filters" id="filters"></div></div>
+</div>
+
 <header class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
@@ -279,7 +287,6 @@
       <h2>The shelves <span class="cn">逛逛貨架 · 可郵購</span></h2>
       <p>Our real stock list, by category. Tap to add items to your basket, then send it as a mail order — we'll confirm stock, prices and UK postage before anything is charged.</p>
     </div>
-    <div class="filters" id="filters"></div>
     <p class="catcount" id="catcount"></p>
     <div class="prod-grid" id="prodGrid"></div>
     <p class="prod-note">Sizes are taken from Carmen's stock list. Prices show where they're price-marked; everything else is quoted on confirmation. To use real photos, drop an image into <code>/images/</code> named by stock code (e.g. <code>F529A.jpg</code>) and add <code>img:'images/F529A.jpg'</code> to that product in the script.</p>
@@ -737,7 +744,8 @@
   filters.addEventListener('click',function(e){const c=e.target.closest('.fchip');if(!c)return;
     activeCat=c.dataset.cat;filters.querySelectorAll('.fchip').forEach(x=>x.classList.toggle('active',x===c));
     if(activeBrand){activeBrand=null;brandChips.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));}
-    render();});
+    render();
+    document.getElementById('shop').scrollIntoView({behavior:'smooth',block:'start'});});
 
   const brandChips=document.getElementById('brandChips');
   brandChips.addEventListener('click',function(e){
