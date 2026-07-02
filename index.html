@@ -132,7 +132,9 @@
   .brands h2 .cn{display:block;font-size:.56em;color:var(--gold);margin-top:8px}
   .brands p{color:#e9d8c5;margin-top:12px;font-size:.98rem;line-height:1.7}
   .chips{display:flex;flex-wrap:wrap;gap:10px}
-  .chip{background:rgba(255,255,255,.08);border:1.5px solid rgba(246,180,44,.4);color:var(--gold);padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem}
+  .chip{background:rgba(255,255,255,.08);border:1.5px solid rgba(246,180,44,.4);color:var(--gold);padding:8px 14px;border-radius:999px;font-weight:700;font-size:.86rem;cursor:pointer;transition:.15s;user-select:none}
+  .chip:hover{background:rgba(246,180,44,.18);transform:translateY(-1px)}
+  .chip.active{background:var(--gold);color:var(--ink);border-color:var(--gold)}
 
   .why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
   .stat{background:var(--cream);border:2px solid var(--ink);border-radius:15px;padding:26px 22px;text-align:center}
@@ -289,11 +291,11 @@
         <h2>The brands you cook with<span class="cn">你慣用的品牌,這裡都有</span></h2>
         <p>From everyday basmati to the spice blends that make a curry sing — plus a few world-food favourites. If we don't have it, just ask and we'll try to get it in.</p>
       </div>
-      <div class="chips">
-        <span class="chip">Tilda</span><span class="chip">Rajah</span><span class="chip">MDH</span><span class="chip">Shan</span>
-        <span class="chip">Pataks</span><span class="chip">Niharti</span><span class="chip">Top-Op</span><span class="chip">Maggi</span>
-        <span class="chip">Cirio</span><span class="chip">Greenfields</span><span class="chip">Old Jamaica</span>
-        <span class="chip">Ajinomoto</span><span class="chip">Otafuku</span><span class="chip">J-Basket</span>
+      <div class="chips" id="brandChips">
+        <span class="chip" data-brand="Tilda">Tilda</span><span class="chip" data-brand="Rajah">Rajah</span><span class="chip" data-brand="MDH">MDH</span><span class="chip" data-brand="Shan">Shan</span>
+        <span class="chip" data-brand="Pataks">Pataks</span><span class="chip" data-brand="Niharti">Niharti</span><span class="chip" data-brand="Top-Op">Top-Op</span><span class="chip" data-brand="Maggi">Maggi</span>
+        <span class="chip" data-brand="Cirio">Cirio</span><span class="chip" data-brand="Greenfields">Greenfields</span><span class="chip" data-brand="Old Jamaica">Old Jamaica</span>
+        <span class="chip" data-brand="Ajinomoto">Ajinomoto</span><span class="chip" data-brand="Otafuku">Otafuku</span><span class="chip" data-brand="J-Basket">J-Basket</span>
       </div>
     </div>
   </div>
@@ -632,6 +634,7 @@
   const cart = {};
   PRODUCTS.forEach(p=>cart[p.code]=0);
   let activeCat='all';
+  let activeBrand=null;
 
   const grid=document.getElementById('prodGrid');
   const filters=document.getElementById('filters');
@@ -647,9 +650,11 @@
   function stepperHTML(code){return '<div class="stepper" data-id="'+code+'"><button class="minus">−</button><span class="q">'+cart[code]+'</span><button class="plus">+</button></div>';}
 
   function render(){
-    const list=activeCat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===activeCat);
-    document.getElementById('catcount').textContent=
-      activeCat==='all'?('Showing all '+PRODUCTS.length+' lines'):(CATS[activeCat].label+' · '+list.length+' lines');
+    let list=activeCat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===activeCat);
+    if(activeBrand) list=list.filter(p=>p.brand===activeBrand);
+    let label=activeCat==='all'?('Showing all '+PRODUCTS.length+' lines'):(CATS[activeCat].label+' · '+list.length+' lines');
+    if(activeBrand) label=activeBrand+' · '+list.length+' lines';
+    document.getElementById('catcount').textContent=label;
     grid.innerHTML=list.map(p=>(
       '<div class="prod" data-cat="'+p.cat+'">'+
         '<div class="pimg cat-'+p.cat+'">'+imgHTML(p)+
@@ -687,7 +692,24 @@
   }
 
   filters.addEventListener('click',function(e){const c=e.target.closest('.fchip');if(!c)return;
-    activeCat=c.dataset.cat;filters.querySelectorAll('.fchip').forEach(x=>x.classList.toggle('active',x===c));render();});
+    activeCat=c.dataset.cat;filters.querySelectorAll('.fchip').forEach(x=>x.classList.toggle('active',x===c));
+    if(activeBrand){activeBrand=null;brandChips.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));}
+    render();});
+
+  const brandChips=document.getElementById('brandChips');
+  brandChips.addEventListener('click',function(e){
+    const c=e.target.closest('.chip');if(!c)return;
+    const brand=c.dataset.brand;
+    if(activeBrand===brand){
+      activeBrand=null;
+      c.classList.remove('active');
+    }else{
+      activeBrand=brand;
+      brandChips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x===c));
+    }
+    render();
+    document.getElementById('shop').scrollIntoView({behavior:'smooth',block:'start'});
+  });
 
   document.addEventListener('click',function(e){
     const add=e.target.closest('[data-add]');
