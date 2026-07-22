@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carmen's Asian Mini Market Ltd · 卡門亞洲小超市 — Llandudno</title>
 <meta name="description" content="Family-run South Asian & world grocery in Craig-y-Don, Llandudno. Spices, dal, rice, pickles, chutneys, oils and more — in store and by post.">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#df141d">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Carmen's">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -220,6 +227,14 @@
   }
   @media(max-width:640px){.prod-grid{grid-template-columns:repeat(2,1fr)}.door{grid-template-columns:1fr}.pimg{aspect-ratio:16/9}.pimg .em{font-size:1.3rem}.pimg .phbrand{font-size:.82rem}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+  .install-banner{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;background:var(--cream);border:2px solid var(--ink);border-radius:16px;box-shadow:var(--shadow);padding:14px 16px;display:flex;align-items:center;gap:12px;max-width:460px;margin:0 auto}
+  .install-banner .mark{font-size:1.8rem;line-height:1}
+  .install-banner .txt{flex:1;display:flex;flex-direction:column;gap:2px}
+  .install-banner .txt b{font-size:.92rem}
+  .install-banner .txt span{font-size:.8rem;color:var(--ink-soft)}
+  .install-banner .btn{padding:8px 14px;font-size:.85rem;white-space:nowrap}
+  .install-close{background:none;border:none;font-size:1rem;color:var(--ink-soft);cursor:pointer;padding:4px}
+  @media(max-width:520px){.install-banner{left:10px;right:10px;bottom:10px;padding:12px}}
 </style>
 </head>
 <body>
@@ -675,6 +690,7 @@
     {code:'WANGGOCHUC', brand:'Wang', name:'Red Pepper Powder Coarse (Gochugaru)', cn:'Wang 太陽草 韓國辣椒粉 (粗)', size:'227g', cat:'spice', ic:'🌶️', price:null, cuisine:'korean', img:'images/WANGGOCHUC.jpg'},
     {code:'WANGGOCHUF', brand:'Wang', name:'Red Pepper Powder Fine (Gochugaru)', cn:'Wang 太陽草 韓國辣椒粉 (細)', size:'200g', cat:'spice', ic:'🌶️', price:null, cuisine:'korean', img:'images/WANGGOCHUF.jpg'},
     {code:'YANCOBLKGAR', brand:'Yanco', name:'Single-Clove Black Garlic', cn:'Yanco 單瓣黑蒜', size:'100g', cat:'herb', ic:'🧄', price:null, cuisine:'chinese', img:'images/YANCOBLKGAR.jpg'},
+    {code:'PH147', brand:'Fisherfarms', name:'Marinated Deboned Milkfish (Farm-Raised Bangus), Small', cn:'醃虱目魚(去骨) 小條裝', size:'350g (12.35oz)', cat:'frozen', ic:'🐟', price:null, cuisine:'filipino', img:'images/PH147.jpg'},
   ];
   /* ============================================================ */
 
@@ -823,6 +839,69 @@
   const idx=order.indexOf(today);if(rows[idx])rows[idx].classList.add('today');
 
   render();refreshCart();
+
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',()=>{
+      navigator.serviceWorker.register('sw.js').catch(()=>{});
+    });
+  }
+
+  (function(){
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+    if(isStandalone) return; // already installed, don't nag
+
+    const KEY='installBannerDismissed';
+    if(localStorage.getItem(KEY)) return;
+
+    const banner=document.getElementById('installBanner');
+    const btn=document.getElementById('installBtn');
+    const closeBtn=document.getElementById('installClose');
+    const txt=document.getElementById('installTxt');
+    let deferredPrompt=null;
+
+    const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent) && !window.MSStream;
+    const isSafari=/^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+    closeBtn.addEventListener('click',()=>{
+      banner.hidden=true;
+      localStorage.setItem(KEY,'1');
+    });
+
+    if(isIOS && isSafari){
+      txt.textContent='Tap the Share icon, then "Add to Home Screen".';
+      banner.hidden=false;
+    }else{
+      window.addEventListener('beforeinstallprompt',(e)=>{
+        e.preventDefault();
+        deferredPrompt=e;
+        btn.hidden=false;
+        banner.hidden=false;
+      });
+      btn.addEventListener('click',async()=>{
+        if(!deferredPrompt) return;
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt=null;
+        banner.hidden=true;
+        localStorage.setItem(KEY,'1');
+      });
+    }
+
+    window.addEventListener('appinstalled',()=>{
+      banner.hidden=true;
+      localStorage.setItem(KEY,'1');
+    });
+  })();
 </script>
+<div id="installBanner" class="install-banner" hidden>
+  <span class="mark">🧧</span>
+  <div class="txt">
+    <b>Add Carmen's to your home screen</b>
+    <span id="installTxt">Get quick access, even without opening a browser.</span>
+  </div>
+  <button id="installBtn" class="btn btn-red" type="button" hidden>Add</button>
+  <button id="installClose" class="install-close" aria-label="Dismiss" type="button">✕</button>
+</div>
+
 </body>
 </html>
